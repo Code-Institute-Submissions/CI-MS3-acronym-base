@@ -7,21 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block styles %}
+    {% endblock %}
 </head>
+
 <body>
-    
+
     {% block content %}
     {% endblock %}
-</body>
 
+
+
+
+    <footer class="page-footer">
+        <div id="footer-text" class="container">
+            © 2021 Vilmantas Zaleckas
+            <a class="grey-text text-lighten-4 right" target="_blank" href="https://github.com/niekados/">
+                <i class="fab fa-github-square"></i><span class="sr-only">GitHub</span></a>
+            <a class="grey-text text-lighten-4 right" target="_blank"
+                href="www.linkedin.com/in/vilmantas-zaleckas-3907a51b9">
+                <i class="fab fa-linkedin"></i><span class="sr-only">LinkedIn</span></a>
+            <a class="grey-text text-lighten-4 right" target="_blank" href="mailto:galway@europe.com">
+                <i class="fas fa-envelope-square"></i><span class="sr-only">email</span></a>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="script.js"></script>
-    </body>
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
 
 </html>

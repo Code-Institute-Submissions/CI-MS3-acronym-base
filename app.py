@@ -18,7 +18,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
+@app.route("/")
+@app.route("/get_acronyms")
+def get_acronyms():
+    acronyms = list(mongo.db.acronyms.find())
+    return render_template("index.html", acronyms=acronyms)
 
 
 
