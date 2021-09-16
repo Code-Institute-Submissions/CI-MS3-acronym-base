@@ -20,35 +20,37 @@
     <header>
         <nav>
             <div class="nav-wrapper container">
-                <a href="#!" class="brand-logo">Acronym Base</a>
+                <a href="{{ url_for('get_acronyms') }}" class="brand-logo">Acronym Base</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
                     <li><a href="#">My Profile</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="#">Login</a></li>
                     <li><a href="#">Logout</a></li>
                 </ul>
             </div>
         </nav>
 
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="#">Home</a></li>
+        <ul class="sidenav right" id="mobile-demo">
+            <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
             <li><a href="#">My Profile</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="#">Login</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </header>
+    <main>
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-
+    </main>
     <footer class="page-footer">
         <div id="footer-text" class="container">
             © 2021 Vilmantas Zaleckas
-            <a class="grey-text text-lighten-4 right my-social-links" target="_blank" href="https://github.com/niekados/">
+            <a class="grey-text text-lighten-4 right my-social-links" target="_blank"
+                href="https://github.com/niekados/">
                 <i class="fab fa-github-square"></i><span class="sr-only">GitHub</span></a>
             <a class="grey-text text-lighten-4 right my-social-links" target="_blank"
                 href="www.linkedin.com/in/vilmantas-zaleckas-3907a51b9">
@@ -60,7 +62,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js')}}"></script>
     {% block scripts %}

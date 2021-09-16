@@ -25,6 +25,10 @@ def get_acronyms():
     return render_template("index.html", acronyms=acronyms)
 
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
