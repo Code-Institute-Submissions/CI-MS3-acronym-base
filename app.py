@@ -22,20 +22,19 @@ mongo = PyMongo(app)
 @app.route("/get_acronyms")
 def get_acronyms():
     acronyms = list(mongo.db.acronyms.find())
-    flash("welcome")
     return render_template("index.html", acronyms=acronyms)
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username_in_use = mongo.db.users.find_one(
+        registered_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        if username_in_use:
+        if registered_user:
             flash("This username is already registered")
             return redirect(url_for("register"))
         if request.form.get("password") != request.form.get("password-2"):
-            flash("Passwords doesn't match")
+            flash("Passwords do not match")
             return redirect(url_for("register"))
         
         register = {
@@ -47,6 +46,27 @@ def register():
         flash("You have successfully reigistered")
             
     return render_template("register.html") 
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        registered_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        if registered_user:
+            if check_password_hash(
+                registered_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Hello, {}".format(request.form.get("username")))
+            else:
+                flash("Login details do not match")
+                return redirect(url_for("login"))
+
+        else:
+            flash("Login details do not match")
+            return redirect(url_for("login"))
+    return render_template("login.html")
 
 
 if __name__ == "__main__":

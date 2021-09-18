@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
+<form>
+    <div class="row">
+        <div id="search-bar" class="input-field container center col s4 offset-s4">
+            <input id="search" type="search" required>
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+        </div>
+</form>
     {% for acronym in acronyms %}
     <div class="row container">
         <div class="col s12 m10 offset-m1">
             <p><strong>{{ acronym.acronym_name }}</strong> </p>
             <p>{{ acronym.meaning }} </p>
-                <hr>
+            <hr>
         </div>
     </div>
     {% endfor %}
