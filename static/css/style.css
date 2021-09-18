@@ -7,9 +7,18 @@
       border: 1px solid black;
   }
 
+  p {
+      margin: 0px
+  }
 
-  br {
-      background-color: black;
+.flashes {
+    padding: 10px 0px;
+    border-radius: 25px;
+}
+
+  hr {
+      background-color: grey;
+      margin: 0px;
   }
 
   #main-content {

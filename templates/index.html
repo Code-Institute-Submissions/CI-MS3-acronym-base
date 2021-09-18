@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
     {% for acronym in acronyms %}
-       <p> {{ acronym.acronym_name }} - {{ acronym.meaning }} </p>
+    <div class="row container">
+        <div class="col s12 m10 offset-m1">
+            <p><strong>{{ acronym.acronym_name }}</strong> </p>
+            <p>{{ acronym.meaning }} </p>
+                <hr>
+        </div>
+    </div>
     {% endfor %}
-
 {% endblock %}

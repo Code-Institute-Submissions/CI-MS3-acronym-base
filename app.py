@@ -22,12 +22,31 @@ mongo = PyMongo(app)
 @app.route("/get_acronyms")
 def get_acronyms():
     acronyms = list(mongo.db.acronyms.find())
+    flash("welcome")
     return render_template("index.html", acronyms=acronyms)
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html")
+    if request.method == "POST":
+        username_in_use = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        if username_in_use:
+            flash("This username is already registered")
+            return redirect(url_for("register"))
+        if request.form.get("password") != request.form.get("password-2"):
+            flash("Passwords doesn't match")
+            return redirect(url_for("register"))
+        
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+        session["user"] = request.form.get("username").lower()
+        flash("You have successfully reigistered")
+            
+    return render_template("register.html") 
 
 
 if __name__ == "__main__":
