@@ -24,20 +24,26 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
-                    <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
-                    <li><a href="{{ url_for('register') }}">Register</a></li>
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                    <li><a href="#">Logout</a></li>
+                    {% if session.user %}
+                        <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
 
         <ul class="sidenav right" id="mobile-demo">
             <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
-            <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="#">Logout</a></li>
+            {% if session.user %}
+                <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
         </ul>
     </header>
     <section>
