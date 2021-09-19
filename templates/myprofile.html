@@ -10,5 +10,15 @@
       <a href="{{ url_for('add_acronym') }}" class="btn-floating btn-large green"><i class="material-icons">add</i></a>
     </div>
   </div>
+  {% for entry in user_entries %}
+  <div class="row container">
+      <div class="col s12 m10 offset-m1">
+          <p><strong>{{ entry.acronym_name }}</strong> </p>
+          <p>{{ entry.meaning }} </p>
+          <p class="right-align "><small>{{ entry.entered_by }}</small></p>
+          <hr>
+      </div>
+  </div>
+  {% endfor %}
   
 {% endblock %}

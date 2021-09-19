@@ -80,8 +80,10 @@ def myprofile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        return render_template("myprofile.html", username=username)
-
+        user_entries = list(mongo.db.acronyms.find({"entered_by": session["user"]}))
+        return render_template(
+            "myprofile.html", username=username, user_entries=user_entries)
+    
     return redirect(url_for("login"))
 
 
@@ -92,7 +94,7 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_acronym", methods =["GET", "POST"])
+@app.route("/add_acronym", methods=["GET", "POST"])
 def add_acronym():
     if request.method == "POST":
         new_acronym = { 
