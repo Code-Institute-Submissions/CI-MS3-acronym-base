@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row registration-form">
+  <form class="col s12" method="POST" action="{{ url_for('add_acronym') }}">
+    <div class="row">
+      <div class="input-field col s10 m4 offset-s1 offset-m4">
+        <input id="acronym_name" name="acronym_name" type="text" class="validate">
+        <label for="acronym_name">Acronym</label>
+      </div>
+      <div class="row">
+        <div class="input-field col s10 m4 offset-s1 offset-m4">
+          <textarea id="meaning" name="meaning" minlength="3" maxlength="150" class="materialize-textarea"></textarea>
+          <label for="meaning">Definition</label>
+        </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col offset-m4 offset-s1">
+        <button class="blue-grey btn" type="submit" name="action">Submit
+          <i class="material-icons right">add_box</i>
+        </button>
+      </div>
+      </div>
+  </form>
+</div>
+{% endblock %}

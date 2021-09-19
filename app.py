@@ -22,6 +22,7 @@ mongo = PyMongo(app)
 @app.route("/get_acronyms")
 def get_acronyms():
     acronyms = list(mongo.db.acronyms.find())
+    flash("Welcome")
     return render_template("index.html", acronyms=acronyms)
 
 
@@ -89,6 +90,22 @@ def logout():
     flash("You have successfully logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add_acronym", methods =["GET", "POST"])
+def add_acronym():
+    if request.method == "POST":
+        new_acronym = { 
+                "acronym_name": request.form.get("acronym_name"),
+                "meaning": request.form.get("meaning"),
+                "entered_by": session["user"]
+            }
+        
+        mongo.db.acronyms.insert_one(new_acronym)
+        flash("New acronym successfully added")
+
+    return render_template("add_acronym.html")
+
 
 
 if __name__ == "__main__":

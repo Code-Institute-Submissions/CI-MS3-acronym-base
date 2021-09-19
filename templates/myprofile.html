@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="row container">
+  <div class="col s12 center-align">
   <h4>{{ username }}'s profile</h4>
-
+</div>
+</div>
+  <div class="row container">
+    <div class="col offset-s8">
+      <a href="{{ url_for('add_acronym') }}" class="btn-floating btn-large green"><i class="material-icons">add</i></a>
+    </div>
+  </div>
   
 {% endblock %}
