@@ -80,10 +80,11 @@ def myprofile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        user_entries = list(mongo.db.acronyms.find({"entered_by": session["user"]}))
+        user_entries = list(mongo.db.acronyms.find(
+            {"entered_by": session["user"]}))
         return render_template(
             "myprofile.html", username=username, user_entries=user_entries)
-    
+
     return redirect(url_for("login"))
 
 
@@ -108,6 +109,21 @@ def add_acronym():
 
     return render_template("add_acronym.html")
 
+@app.route("/edit_acronym/<acronym_id>", methods=["GET", "POST"])
+def edit_acronym(acronym_id):
+    if request.method == "POST":
+        update_acronym = {
+            "acronym_name": request.form.get("acronym_name"),
+            "meaning": request.form.get("meaning"),
+            "entered_by": session["user"]
+        }
+        mongo.db.acronyms.update({"_id": ObjectId(acronym_id)}, update_acronym)
+        flash("Acronym successfully updated")
+        return redirect(url_for('myprofile', username=session['user']))
+
+    entry = mongo.db.acronyms.find_one({"_id": ObjectId(acronym_id)})
+
+    return render_template("edit_acronym.html", entry=entry)
 
 
 if __name__ == "__main__":

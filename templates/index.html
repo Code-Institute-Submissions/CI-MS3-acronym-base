@@ -10,11 +10,11 @@
 </form>
 {% if session.user %}
 <div class="col">
-<a href="{{ url_for('add_acronym') }}" class="btn-floating btn-large green"><i class="material-icons">add</i></a>
+<a href="{{ url_for('add_acronym') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
 </div>
 {% else %}
 <div class="col">
-    <a href="{{ url_for('register') }}" class="btn-floating btn-large green"><i class="material-icons">add</i></a>
+    <a href="{{ url_for('login') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
     </div>
 {% endif %}
     {% for acronym in acronyms %}
@@ -22,7 +22,7 @@
         <div class="col s12 m10 offset-m1">
             <p><strong>{{ acronym.acronym_name }}</strong> </p>
             <p>{{ acronym.meaning }} </p>
-            <hr>
+            <p class="right-align "><small>{{ acronym.entered_by }}</small></p>
         </div>
     </div>
     {% endfor %}

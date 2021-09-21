@@ -7,17 +7,23 @@
 </div>
   <div class="row container">
     <div class="col offset-s8">
-      <a href="{{ url_for('add_acronym') }}" class="btn-floating btn-large green"><i class="material-icons">add</i></a>
+      <a href="{{ url_for('add_acronym') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
     </div>
   </div>
   {% for entry in user_entries %}
+  
   <div class="row container">
-      <div class="col s12 m10 offset-m1">
-          <p><strong>{{ entry.acronym_name }}</strong> </p>
-          <p>{{ entry.meaning }} </p>
-          <p class="right-align "><small>{{ entry.entered_by }}</small></p>
-          <hr>
+    
+    <div class="col s12 m7 offset-m1">
+      <h5> <strong>{{ entry.acronym_name }}</strong> </h5>{{ entry.meaning }}
+    </div>
+    
+      <div class="col s12 m3 ">
+        <a href="{{ url_for('edit_acronym', acronym_id=entry._id)}}" class="btn-floating btn green"><i class="material-icons">edit</i></a>
+        <a href="#" class="btn-floating btn red"><i class="material-icons">delete_forever
+          </i></a>
       </div>
+   
   </div>
   {% endfor %}
   
