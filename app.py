@@ -85,6 +85,11 @@ def myprofile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
+    if session["user"] == "admin":
+        user_entries = list(mongo.db.acronyms.find())
+        return render_template(
+            "myprofile.html", username=username, user_entries=user_entries)
+
     if session["user"]:
         user_entries = list(mongo.db.acronyms.find(
             {"entered_by": session["user"]}))

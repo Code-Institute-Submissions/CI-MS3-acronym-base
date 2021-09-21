@@ -8,15 +8,15 @@
             <i class="material-icons">close</i>
         </div>
 </form>
-<div class="col">
+<div class="col index-btns">
     <a href="{{ url_for('get_acronyms') }}" class="btn-floating btn red"><i class="material-icons">refresh</i></a>
 </div>
 {% if session.user %}
-<div class="col">
+<div class="col index-btns">
     <a href="{{ url_for('add_acronym') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
 </div>
 {% else %}
-<div class="col">
+<div class="col index-btns">
     <a href="{{ url_for('login') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
 </div>
 {% endif %}
@@ -27,6 +27,7 @@
         <p><strong>{{ acronym.acronym_name }}</strong> </p>
         <p>{{ acronym.meaning }} </p>
         <p class="right-align "><small>{{ acronym.entered_by }}</small></p>
+        <hr>
     </div>
 </div>
 {% endfor %}
