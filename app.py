@@ -26,13 +26,19 @@ def get_acronyms():
     return render_template("index.html", acronyms=acronyms)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    search = request.form.get("search")
+    acronyms = list(mongo.db.acronyms.find({"$text": {"$search": search}}))
+    return render_template("index.html", acronyms=acronyms)
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         registered_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         if registered_user:
-            flash("This username is already registered")
+            flash("This username is registered already")
             return redirect(url_for("register"))
         if request.form.get("password") != request.form.get("password-2"):
             flash("Passwords do not match")
@@ -90,7 +96,7 @@ def myprofile(username):
 
 @app.route("/logout")
 def logout():
-    flash("You have successfully logged out")
+    flash("You have logged out")
     session.pop("user")
     return redirect(url_for("login"))
 
@@ -105,7 +111,8 @@ def add_acronym():
             }
         
         mongo.db.acronyms.insert_one(new_acronym)
-        flash("New acronym successfully added")
+        flash("New acronym added")
+        return redirect(url_for("myprofile", username=session["user"]))
 
     return render_template("add_acronym.html")
 
@@ -118,12 +125,20 @@ def edit_acronym(acronym_id):
             "entered_by": session["user"]
         }
         mongo.db.acronyms.update({"_id": ObjectId(acronym_id)}, update_acronym)
-        flash("Acronym successfully updated")
+        flash("Acronym updated")
         return redirect(url_for('myprofile', username=session['user']))
 
     entry = mongo.db.acronyms.find_one({"_id": ObjectId(acronym_id)})
 
     return render_template("edit_acronym.html", entry=entry)
+
+
+@app.route("/delete_acronym/<acronym_id>")
+def delete_acronym(acronym_id):
+    mongo.db.acronyms.remove({"_id": ObjectId(acronym_id)})
+    flash("Acronym deleted")
+    return redirect(url_for("myprofile", username=session["user"]))
+
 
 
 if __name__ == "__main__":

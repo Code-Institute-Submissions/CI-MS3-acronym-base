@@ -1,29 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
-<form>
+<form action="{{ url_for('search') }}" method="POST">
     <div class="row">
         <div id="search-bar" class="input-field container center col m4 offset-m4 s8 offset-s1">
-            <input id="search" type="search" required>
+            <input id="search" name="search" type="search" class="validate" required>
             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
             <i class="material-icons">close</i>
         </div>
 </form>
+<div class="col">
+    <a href="{{ url_for('get_acronyms') }}" class="btn-floating btn red"><i class="material-icons">refresh</i></a>
+</div>
 {% if session.user %}
 <div class="col">
-<a href="{{ url_for('add_acronym') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
+    <a href="{{ url_for('add_acronym') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
 </div>
 {% else %}
 <div class="col">
     <a href="{{ url_for('login') }}" class="btn-floating btn green"><i class="material-icons">add</i></a>
-    </div>
+</div>
 {% endif %}
-    {% for acronym in acronyms %}
-    <div class="row container">
-        <div class="col s12 m10 offset-m1">
-            <p><strong>{{ acronym.acronym_name }}</strong> </p>
-            <p>{{ acronym.meaning }} </p>
-            <p class="right-align "><small>{{ acronym.entered_by }}</small></p>
-        </div>
+{% if acronyms | length > 0 %}
+{% for acronym in acronyms %}
+<div class="row container">
+    <div class="col s12 m10 offset-m1">
+        <p><strong>{{ acronym.acronym_name }}</strong> </p>
+        <p>{{ acronym.meaning }} </p>
+        <p class="right-align "><small>{{ acronym.entered_by }}</small></p>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
+{% else %}
+<div class="row container">
+    <div class="col s12 center-align">
+        <h5>No results found</h5>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
