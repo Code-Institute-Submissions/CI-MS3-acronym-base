@@ -24,12 +24,16 @@
 {% for acronym in acronyms %}
 <div class="row container">
     <div class="col s12 m10 offset-m1">
-        <p><strong>{{ acronym.acronym_name }}</strong> </p>
-        <p>{{ acronym.meaning }} </p>
-        <p class="right-align "><small>{{ acronym.entered_by }}</small></p>
-        <hr>
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title"><strong>{{ acronym.acronym_name }}</strong></span>
+                <blockquote><em>{{ acronym.meaning }}</em></blockquote>
+                <p class="right-align"><small>{{ acronym.entered_by }}</small></p>
+            </div>
+        </div>
     </div>
 </div>
+
 {% endfor %}
 {% else %}
 <div class="row container">

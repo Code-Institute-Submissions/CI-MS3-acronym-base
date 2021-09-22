@@ -145,6 +145,12 @@ def delete_acronym(acronym_id):
     return redirect(url_for("myprofile", username=session["user"]))
 
 
+@app.route("/confirm_delete/<acronym_id>", methods=["GET", "POST"])
+def confirm_delete(acronym_id):
+    entry = mongo.db.acronyms.find_one({"_id": ObjectId(acronym_id)})
+    return render_template("confirm_delete.html", entry=entry)
+
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
