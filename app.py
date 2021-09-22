@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 @app.route("/get_acronyms")
 def get_acronyms():
     acronyms = list(mongo.db.acronyms.find())
-    flash("Welcome")
+    
     return render_template("index.html", acronyms=acronyms)
 
 

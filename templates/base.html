@@ -18,10 +18,10 @@
 
 <body>
     <header>
-        <nav>
+        <nav class="grey lighten-4">
             <div class="nav-wrapper container">
-                <a href="{{ url_for('get_acronyms') }}" class="brand-logo">Acronym Base</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="{{ url_for('get_acronyms') }}" class="brand-logo black-text">Acronym Base</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
                     {% if session.user %}
@@ -35,7 +35,7 @@
             </div>
         </nav>
 
-        <ul class="sidenav right" id="mobile-demo">
+        <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
             {% if session.user %}
                 <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
@@ -67,16 +67,16 @@
         {% endblock %}
 
     </main>
-    <footer class="page-footer">
+    <footer class="page-footer grey lighten-4 black-text">
         <div id="footer-text" class="container">
             © 2021 Vilmantas Zaleckas
-            <a class="grey-text text-lighten-4 right my-social-links" target="_blank"
+            <a class="right my-social-links" target="_blank"
                 href="https://github.com/niekados/">
                 <i class="fab fa-github-square"></i><span class="sr-only">GitHub</span></a>
-            <a class="grey-text text-lighten-4 right my-social-links" target="_blank"
+            <a class="right my-social-links" target="_blank"
                 href="https://www.linkedin.com/in/vilmantas-zaleckas-3907a51b9">
                 <i class="fab fa-linkedin"></i><span class="sr-only">LinkedIn</span></a>
-            <a class="grey-text text-lighten-4 right my-social-links" target="_blank" href="mailto:galway@europe.com">
+            <a class="right my-social-links" target="_blank" href="mailto:galway@europe.com">
                 <i class="fas fa-envelope-square"></i><span class="sr-only">email</span></a>
         </div>
     </footer>
