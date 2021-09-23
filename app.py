@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_acronyms")
 def get_acronyms():
-    acronyms = list(mongo.db.acronyms.find())
+    acronyms = list(mongo.db.acronyms.find().collation({'locale':'en'}).sort("acronym_name", 1))
     
     return render_template("index.html", acronyms=acronyms)
 
@@ -86,13 +86,13 @@ def myprofile(username):
         {"username": session["user"]})["username"]
 
     if session["user"] == "admin":
-        user_entries = list(mongo.db.acronyms.find())
+        user_entries = list(mongo.db.acronyms.find().collation({'locale':'en'}).sort("acronym_name", 1))
         return render_template(
             "myprofile.html", username=username, user_entries=user_entries)
 
     if session["user"]:
         user_entries = list(mongo.db.acronyms.find(
-            {"entered_by": session["user"]}))
+            {"entered_by": session["user"]}).collation({'locale':'en'}).sort("acronym_name", 1))
         return render_template(
             "myprofile.html", username=username, user_entries=user_entries)
 

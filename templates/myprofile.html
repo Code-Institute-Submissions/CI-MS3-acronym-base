@@ -2,35 +2,40 @@
 {% block content %}
 <div class="row container">
   <div class="col s12 center-align">
-  <h4>{{ username }}'s profile</h4>
+    <h4>{{ username.capitalize() }}'s profile</h4>
+  </div>
 </div>
+<div class="row container">
+  <div class="col offset-s10">
+    <a href="{{ url_for('add_acronym') }}" class="btn-floating btn green lighten-1"><i
+        class="material-icons">add</i></a>
+  </div>
 </div>
-  <div class="row container">
-    <div class="col offset-s10">
-      <a href="{{ url_for('add_acronym') }}" class="btn-floating btn green lighten-1"><i class="material-icons">add</i></a>
+{% for entry in user_entries %}
+
+<div class="row container">
+  <div class="col s12 m10 offset-m1">
+    <div class="card grey lighten-5">
+      <div class="card-content">
+        <span class="card-title"><strong>{{ entry.acronym_name }}</strong></span>
+        <blockquote><em>{{ entry.meaning }}</em></blockquote>
+        {% if session["user"] == "admin" %}
+        <p class="right-align"><small>{{ entry.entered_by }}</small></p>
+        {% endif %}
+      </div>
+      <div class="card-action right-align">
+        <a href="{{ url_for('edit_acronym', acronym_id=entry._id)}}" class="btn-floating btn green lighten-1"><i
+            class="material-icons">edit</i></a>
+        <a href="{{ url_for('confirm_delete', acronym_id=entry._id)}}" class="btn-floating btn red lighten-1"><i
+            class="material-icons">delete_forever
+          </i></a>
+      </div>
     </div>
   </div>
-  {% for entry in user_entries %}
-
-
-  <div class="row container">
-    <div class="col s12 m10 offset-m1">
-        <div class="card grey lighten-5">
-            <div class="card-content">
-                <span class="card-title"><strong>{{ entry.acronym_name }}</strong></span>
-                <blockquote><em>{{ entry.meaning }}</em></blockquote>
-            </div>
-            <div class="card-action right-align">
-              <a href="{{ url_for('edit_acronym', acronym_id=entry._id)}}" class="btn-floating btn green lighten-1"><i class="material-icons">edit</i></a>
-              <a href="{{ url_for('confirm_delete', acronym_id=entry._id)}}" class="btn-floating btn red lighten-1"><i class="material-icons">delete_forever
-                </i></a>
-            </div>
-        </div>
-    </div>
 </div>
-    
 
 
-      {% endfor %}
-  
+
+{% endfor %}
+
 {% endblock %}

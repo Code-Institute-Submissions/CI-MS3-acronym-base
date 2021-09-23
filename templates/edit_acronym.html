@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-
-
-
+<div class="row container">
+  <div class="col s12 center-align">
+    <h4>Edit Acronym</h4>
+  </div>
+</div>
 <div class="row registration-form container">
   <form  method="POST" action="{{ url_for('edit_acronym', acronym_id=entry._id) }}">
   <div class="col s12 m10 offset-m1">

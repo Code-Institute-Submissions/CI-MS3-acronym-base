@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="row container">
+  <div class="col s12 center-align">
+    <h4>Add Acronym</h4>
+  </div>
+</div>
 <div class="row registration-form container">
   <form  method="POST" action="{{ url_for('add_acronym') }}">
   <div class="col s12 m10 offset-m1">
       <div class="card grey lighten-5">
-          <div class="card-content white-text">
+          <div class="card-content">
             <div class="row">
               <div class="input-field col s10 m8 offset-s1 offset-m2">
                 <input id="acronym_name" name="acronym_name" type="text" class="validate">
