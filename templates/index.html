@@ -1,27 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="{{ url_for('search') }}" method="POST">
-    <div class="row">
-        <div id="search-bar" class="input-field container center col m4 offset-m4 s8 offset-s1">
+<!-- Search bar - Materialize-->
+<div id="search-bar" class="row">
+    <form action="{{ url_for('search') }}" method="POST">
+        <div class="input-field container center col m4 offset-m4 s6 offset-s2">
             <input id="search" name="search" type="search" class="validate" required>
-            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            
+            <label class="label-icon" for="search">
+                <i class="material-icons">search</i></label>
         </div>
-</form>
-<div class="col index-btns">
-    <a href="{{ url_for('get_acronyms') }}" class="btn-floating btn red lighten-1"><i class="material-icons">refresh</i></a>
+    </form>
+    <!-- Reset search request button -->
+    <div class="col index-btns">
+        <a href="{{ url_for('get_acronyms') }}" class="btn-floating btn red lighten-1">
+            <i class="material-icons">refresh</i></a>
+    </div>
+    <!-- Add acronym button, if user logged in -->
+    {% if session.user %}
+    <div class="col index-btns">
+        <a href="{{ url_for('add_acronym') }}" class="btn-floating btn green lighten-1">
+            <i class="material-icons">add</i></a>
+    </div>
+    {% else %}
+    <!-- Add acronym button, redirects to "login page" if user not logged in -->
+    <div class="col index-btns">
+        <a href="{{ url_for('login') }}" class="btn-floating btn green lighten-1">
+            <i class="material-icons">add</i></a>
+    </div>
 </div>
-{% if session.user %}
-<div class="col index-btns">
-    <a href="{{ url_for('add_acronym') }}" class="btn-floating btn green lighten-1"><i class="material-icons">add</i></a>
-</div>
-{% else %}
-<div class="col index-btns">
-    <a href="{{ url_for('login') }}" class="btn-floating btn green lighten-1"><i class="material-icons">add</i></a>
-</div>
-{% endif %}
+    {% endif %}
 {% if acronyms | length > 0 %}
-{% for acronym in acronyms %}
+    {% for acronym in acronyms %}
+<!-- Acronym cards and/or search results -->
 <div class="row container">
     <div class="col s12 m10 offset-m1">
         <div class="card grey lighten-5">
@@ -34,8 +43,9 @@
     </div>
 </div>
 
-{% endfor %}
+    {% endfor %}
 {% else %}
+<!-- Search "no results found" message -->
 <div class="row container">
     <div class="col s12 center-align">
         <h5>No results found</h5>

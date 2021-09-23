@@ -1,94 +1,77 @@
+/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans&family=Special+Elite&display=swap');
 
+/* Logo fonts */
 .brand-logo {
     font-family: "special elite";
 }
 
+/* Body fonts */
 body {
     font-family: "public sans";
 }
 
+/* Navbar links color */
 .nav-wrapper a {
     color: black;
 }
- 
- #search-bar {
-      /* margin-top: 1%; */
-      /* opacity: 0.7;
-      border: 1px solid grey;
-      border-radius: 25px;
-      padding: 2px; */
-  }
 
+/* index page search bar */
+#search-bar {
+    margin-top: 1%;
+}
+
+/* Confirm delete card */
 .confirm-delete {
     margin-top: 10%;
 }
 
-  .index-btns {
-      margin-top: 1%;
-  }
+/* index page - add acronym and reset search results buttons */
+.index-btns {
+    margin-top: 1%;
+}
 
-  button.btn-flat {
-      border: 1px solid black;
-  }
-
-  p {
-      margin: 0px
-  }
-
+/* Flash messages */
 .flashes {
     padding: 10px 0px;
-    border-radius: 25px;
+    border-radius: 10px;
+    border: solid 1px lightslategray;
 }
 
-  hr {
-      background-color: grey;
-      margin: auto;
-      max-width: 15%;
-      
-  }
+/* Register.html */
+.registration-form {
+    margin-top: 5%;
+}
 
-  #main-content {
-      margin-top: 5%;
-  }
+/*Materialize Sticky footer */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
 
-  /* Register.html */
-  .registration-form {
-      margin-top: 5%;
-  }
-  /* End Register.html */
-
-  /*Materialize Sticky footer */
-  body {
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-  }
-
-  main {
-      flex: 1 0 auto;
-  }
-
-  /* End Sticky footer */
+main {
+    flex: 1 0 auto;
+}
+/* End Sticky footer */
 
 
-  /* Footer Social links */
-  .my-social-links {
-      margin-right: 2%;
-  }
+/* Footer Social links */
+.my-social-links {
+    margin-right: 2%;
+}
 
-  .my-social-links i {
-      font-size: 2em;
-      color: rgb(68, 68, 68);
+.my-social-links i {
+    font-size: 2em;
+    color: rgb(68, 68, 68);
 
-  }
+}
 
-  .my-social-links i:hover {
-      transform: scale(1.3);
-  }
+.my-social-links i:hover {
+    transform: scale(1.3);
+}
 
-  #footer-text {
+#footer-text {
     margin-bottom: 1%;
 }
-
-  /* End Footer Social links */
+/* End Footer Social links */

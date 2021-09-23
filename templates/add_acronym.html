@@ -1,37 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Page Heading -->
 <div class="row container">
   <div class="col s12 center-align">
     <h4>Add Acronym</h4>
   </div>
 </div>
+<!-- Cards & form - Materialize -->
 <div class="row registration-form container">
-  <form  method="POST" action="{{ url_for('add_acronym') }}">
-  <div class="col s12 m10 offset-m1">
+  <form method="POST" action="{{ url_for('add_acronym') }}">
+    <div class="col s12 m10 offset-m1">
       <div class="card grey lighten-5">
-          <div class="card-content">
+        <div class="card-content">
+          <!-- Acronym name field -->
+          <div class="row">
+            <div class="input-field col s10 m8 offset-s1 offset-m2">
+              <input id="acronym_name" name="acronym_name" type="text" class="validate">
+              <label for="acronym_name">Acronym</label>
+            </div>
+            <!-- Acronym definition field -->
             <div class="row">
-              <div class="input-field col s10 m8 offset-s1 offset-m2">
-                <input id="acronym_name" name="acronym_name" type="text" class="validate">
-                <label for="acronym_name">Acronym</label>
+              <div class="input-field col s10 m8 offset-s1 offset-m2 ">
+                <textarea id="meaning" name="meaning" minlength="3" maxlength="150"
+                  class="materialize-textarea"></textarea>
+                <label for="meaning">Definition</label>
               </div>
-              <div class="row">
-                <div class="input-field col s10 m8 offset-s1 offset-m2 ">
-                  <textarea id="meaning" name="meaning" minlength="3" maxlength="150" class="materialize-textarea"></textarea>
-                  <label for="meaning">Definition</label>
-                </div>
-              </div>
- 
+            </div>
+            <!-- Card Buttons - Materialize -->
           </div>
           <div class="card-action center-align">
-            <a href="{{ url_for('myprofile', username=session['user']) }}" class="btn red lighten-1">Cancel<i class="material-icons">cancel
-            </i></a>
-          <button class="green lighten-1 btn" type="submit" name="action">Submit
-            <i class="material-icons right">add_box</i>
-          </button>
+            <a href="{{ url_for('myprofile', username=session['user']) }}" class="btn red lighten-1">Cancel<i
+                class="material-icons">cancel
+              </i></a>
+            <button class="green lighten-1 btn" type="submit" name="action">Submit
+              <i class="material-icons right">add_box</i>
+            </button>
           </div>
+        </div>
       </div>
-  </div>
-</form>
+  </form>
 </div>
 {% endblock %}

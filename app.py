@@ -18,10 +18,12 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
 @app.route("/get_acronyms")
 def get_acronyms():
-    acronyms = list(mongo.db.acronyms.find().collation({'locale':'en'}).sort("acronym_name", 1))
+    acronyms = list(mongo.db.acronyms.find().collation(
+        {'locale':'en'}).sort("acronym_name", 1))
     
     return render_template("index.html", acronyms=acronyms)
 
@@ -86,13 +88,15 @@ def myprofile(username):
         {"username": session["user"]})["username"]
 
     if session["user"] == "admin":
-        user_entries = list(mongo.db.acronyms.find().collation({'locale':'en'}).sort("acronym_name", 1))
+        user_entries = list(mongo.db.acronyms.find().collation(
+            {'locale':'en'}).sort("acronym_name", 1))
         return render_template(
             "myprofile.html", username=username, user_entries=user_entries)
 
     if session["user"]:
         user_entries = list(mongo.db.acronyms.find(
-            {"entered_by": session["user"]}).collation({'locale':'en'}).sort("acronym_name", 1))
+            {"entered_by": session["user"]}).collation(
+                {'locale':'en'}).sort("acronym_name", 1))
         return render_template(
             "myprofile.html", username=username, user_entries=user_entries)
 
@@ -108,11 +112,9 @@ def logout():
 
 @app.route("/add_acronym", methods=["GET", "POST"])
 def add_acronym():
-
-
     if request.method == "POST":
         new_acronym = { 
-                "acronym_name": request.form.get("acronym_name"),
+                "acronym_name": request.form.get("acronym_name").upper(),
                 "meaning": request.form.get("meaning"),
                 "entered_by": session["user"]
             }
@@ -120,8 +122,8 @@ def add_acronym():
         entries = list(mongo.db.acronyms.find())
         for entry in entries:
             for key, value in entry.items():
-                if value == request.form.get("acronym_name"):
-                    flash("This acronym is in AcronymBase already")
+                if value == request.form.get("acronym_name").upper():
+                    flash("This acronym already exists")
                     return redirect(url_for("add_acronym")) 
         
         mongo.db.acronyms.insert_one(new_acronym)

@@ -18,60 +18,70 @@
 
 <body>
     <header>
+        <!-- Navbar - Materialize -->
         <nav class="grey lighten-4">
             <div class="nav-wrapper container">
                 <a href="{{ url_for('get_acronyms') }}" class="brand-logo black-text">Acronym Base</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                        class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
+                    <!-- Logged in user links -->
                     {% if session.user %}
-                        <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <!-- Not logged in user links -->
                     {% else %}
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
 
+        <!-- Mobile Side Nav - Materialize-->
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('get_acronyms') }}">Home</a></li>
             {% if session.user %}
-                <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <!-- Mobile logged in user links -->
+            <li><a href="{{ url_for('myprofile', username=session['user']) }}">My Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <!-- Mobile not logged in user links -->
             {% else %}
-                <li><a href="{{ url_for('register') }}">Register</a></li>
-                <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
             {% endif %}
         </ul>
     </header>
+
+    <!-- flash messages  -->
     <section>
-        <!-- flash messages  -->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                     <div class="row">
-                         <div class="col m6 s12 offset-m3">
-                             <h5 class="blue-grey white-text center-align flashes">
-                                 {{ message }}</h5>
-                         </div>
-                     </div>
+        <div class="row">
+            <div class="col m4 s10 offset-s1 offset-m4">
+                <h5 class="teal lighten-1 z-depth-3 white-text center-align flashes">
+                    {{ message }}</h5>
+            </div>
+        </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
     </section>
+
     <main>
 
         {% block content %}
         {% endblock %}
-
+        
     </main>
+
+    <!-- Footer - Materialize -->
     <footer class="page-footer grey lighten-4 black-text">
         <div id="footer-text" class="container">
             © 2021 Vilmantas Zaleckas
-            <a class="right my-social-links" target="_blank"
-                href="https://github.com/niekados/">
+            <a class="right my-social-links" target="_blank" href="https://github.com/niekados/">
                 <i class="fab fa-github-square"></i><span class="sr-only">GitHub</span></a>
             <a class="right my-social-links" target="_blank"
                 href="https://www.linkedin.com/in/vilmantas-zaleckas-3907a51b9">
@@ -81,6 +91,7 @@
         </div>
     </footer>
 
+    <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
