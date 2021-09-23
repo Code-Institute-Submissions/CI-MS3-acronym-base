@@ -108,12 +108,21 @@ def logout():
 
 @app.route("/add_acronym", methods=["GET", "POST"])
 def add_acronym():
+
+
     if request.method == "POST":
         new_acronym = { 
                 "acronym_name": request.form.get("acronym_name"),
                 "meaning": request.form.get("meaning"),
                 "entered_by": session["user"]
             }
+        
+        entries = list(mongo.db.acronyms.find())
+        for entry in entries:
+            for key, value in entry.items():
+                if value == request.form.get("acronym_name"):
+                    flash("This acronym is in AcronymBase already")
+                    return redirect(url_for("add_acronym")) 
         
         mongo.db.acronyms.insert_one(new_acronym)
         flash("New acronym added")
