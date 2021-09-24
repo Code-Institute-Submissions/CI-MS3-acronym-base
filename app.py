@@ -37,7 +37,7 @@ def search():
 
 
 # Registration 
-# User Authentication example used in MongoDB walkthrough lesson 
+# User Authentication example shown in MongoDB walkthrough lesson 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -64,7 +64,7 @@ def register():
 
 
 # Login
-# User Authentication example used in MongoDB walkthrough lesson
+# User Authentication example shown in MongoDB walkthrough lesson
 @app.route("/login", methods=["GET", "POST"])
 def login():
     # Get username form data 
@@ -113,7 +113,7 @@ def myprofile(username):
 
 
 # Logout
-# User Authentication example used in MongoDB walkthrough lesson 
+# User Authentication example shown in MongoDB walkthrough lesson 
 @app.route("/logout")
 def logout():
     # Remove user cookie from session
