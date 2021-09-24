@@ -19,12 +19,13 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# Get list of all acronyms, sort by name alphabetically ( no upper case priority )
+# Get list of all acronyms, sort by name alphabetically
+# ( no upper case priority )
 @app.route("/")
 @app.route("/get_acronyms")
 def get_acronyms():
     acronyms = list(mongo.db.acronyms.find().collation(
-        {'locale':'en'}).sort("acronym_name", 1))    
+        {'locale': 'en'}).sort("acronym_name", 1))
     return render_template("index.html", acronyms=acronyms)
 
 
@@ -36,8 +37,8 @@ def search():
     return render_template("index.html", acronyms=acronyms)
 
 
-# Registration 
-# User Authentication example shown in MongoDB walkthrough lesson 
+# Registration
+# User Authentication example shown in MongoDB walkthrough lesson
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -47,11 +48,12 @@ def register():
         if registered_user:
             flash("This username already exists")
             return redirect(url_for("register"))
-        # Check if passwords match    
+        # Check if passwords match
         if request.form.get("password") != request.form.get("password-2"):
             flash("Passwords do not match")
             return redirect(url_for("register"))
-        # If passwords match, and username is not in use, insert user into database
+        # If passwords match, and username is not in use,
+        # insert user into database
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
@@ -59,28 +61,28 @@ def register():
         mongo.db.users.insert_one(register)
         session["user"] = request.form.get("username").lower()
         flash("You have successfully reigistered")
-        return redirect(url_for("myprofile", username=session["user"])) 
-    return render_template("register.html") 
+        return redirect(url_for("myprofile", username=session["user"]))
+    return render_template("register.html")
 
 
 # Login
 # User Authentication example shown in MongoDB walkthrough lesson
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    # Get username form data 
+    # Get username form data
     if request.method == "POST":
         registered_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         # Check if password hash matches with hash in user database
         if registered_user:
             if check_password_hash(
-                registered_user["password"], request.form.get("password")):
+                    registered_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Hello, {}".format(
                     request.form.get("username")))
                 return redirect(url_for(
                     "myprofile", username=session["user"]))
-            # If password hash doesn't match, redirect to login page          
+            # If password hash doesn't match, redirect to login page
             else:
                 flash("Login details do not match")
                 return redirect(url_for("login"))
@@ -91,7 +93,7 @@ def login():
     return render_template("login.html")
 
 
-# Myprofile 
+# Myprofile
 @app.route("/myprofile/<username>", methods=["GET", "POST"])
 def myprofile(username):
     username = mongo.db.users.find_one(
@@ -99,21 +101,21 @@ def myprofile(username):
     # User "admin" functionality, lists every user entries in profile page
     if session["user"] == "admin":
         user_entries = list(mongo.db.acronyms.find().collation(
-            {'locale':'en'}).sort("acronym_name", 1))
+            {'locale': 'en'}).sort("acronym_name", 1))
         return render_template(
             "myprofile.html", username=username, user_entries=user_entries)
     # Registered user functionality, lists registered users entries
     if session["user"]:
         user_entries = list(mongo.db.acronyms.find(
             {"entered_by": session["user"]}).collation(
-                {'locale':'en'}).sort("acronym_name", 1))
+                {'locale': 'en'}).sort("acronym_name", 1))
         return render_template(
             "myprofile.html", username=username, user_entries=user_entries)
     return redirect(url_for("login"))
 
 
 # Logout
-# User Authentication example shown in MongoDB walkthrough lesson 
+# User Authentication example shown in MongoDB walkthrough lesson
 @app.route("/logout")
 def logout():
     # Remove user cookie from session
@@ -127,7 +129,7 @@ def logout():
 def add_acronym():
     # Get form data
     if request.method == "POST":
-        new_acronym = { 
+        new_acronym = {
                 "acronym_name": request.form.get("acronym_name").upper(),
                 "meaning": request.form.get("meaning"),
                 "entered_by": session["user"]
@@ -138,7 +140,7 @@ def add_acronym():
             for key, value in entry.items():
                 if value == request.form.get("acronym_name").upper():
                     flash("This acronym already exists")
-                    return redirect(url_for("add_acronym")) 
+                    return redirect(url_for("add_acronym"))
         # If entry name is not in database, insert new entry
         mongo.db.acronyms.insert_one(new_acronym)
         flash("New acronym added")
@@ -160,7 +162,7 @@ def edit_acronym(acronym_id):
         mongo.db.acronyms.update({"_id": ObjectId(acronym_id)}, update_acronym)
         flash("Acronym updated")
         return redirect(url_for('myprofile', username=session['user']))
-    # Get acronym data from database to reflect it in edit form 
+    # Get acronym data from database to reflect it in edit form
     entry = mongo.db.acronyms.find_one({"_id": ObjectId(acronym_id)})
     return render_template("edit_acronym.html", entry=entry)
 

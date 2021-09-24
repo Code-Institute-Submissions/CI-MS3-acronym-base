@@ -2,7 +2,7 @@
 ## Code Institute Second Milestone Project 
 ## **Acronym Base** - acronym database
 
-Acronym database design to store and search socialmedia acronyms.
+Acronym database design to store and search social media acronyms.
 
 ## Index
 
@@ -23,10 +23,10 @@ Acronym database design to store and search socialmedia acronyms.
 
 ## Strategy
 
-* Website with collection of internet acronyms.
-* Socialmedia is full of acronyms and this website is made for user to be able to look up the meanings of acronyms.
+* The website with a collection of internet acronyms.
+* Social media is full of acronyms and this website is made for the user to be able to look up the meanings of acronyms.
 * It has search functionality and add, update and remove functionality for registered users.
-* Website has user login or register features.
+* The website has user login or register features.
 
 
 ## Scope
@@ -153,6 +153,133 @@ All is centered on the page. With a submit button bellow.
     * Special Elite - used only for logo, to add a special, stronger typwriter feel. It is easy to read, also suits perfectly for typwriter logo font idea.
     * Public Sans - font used for the rest of body and accross all elements of website. It has very conventional look, easy to read, but also has a hint of unique feel.
 
-  ## Wireframes
+## Wireframes
 
+  ### Home Page
+
+  <img src="static/wireframes/mobileHome.png" width=500>
+
+  <img src="static/wireframes/desktopHome.png" width=500>
   
+  ---
+
+  ### Register Page
+
+  <img src="static/wireframes/mobileRegister.png" width=500>
+
+  <img src="static/wireframes/desktopRegister.png" width=500>
+  
+  ---
+
+  ### Login Page
+
+  <img src="static/wireframes/mobileLogin.png" width=500>
+
+  <img src="static/wireframes/desktopLogin.png" width=500>
+  
+  ---
+
+  ### My Profile Page
+
+  <img src="static/wireframes/mobileMyProfile.png" width=500>
+
+  <img src="static/wireframes/desktopMyProfile.png" width=500>
+  
+  ---
+
+  ### Add / Edit Acronym
+
+  <img src="static/wireframes/mobileAdd.png" width=500>
+
+  <img src="static/wireframes/desktopAdd.png" width=500>
+  
+  ---
+
+  ### Confirm Delete Page
+
+  <img src="static/wireframes/mobileDelete.png" width=500>
+
+  <img src="static/wireframes/desktopDelete.png" width=500>
+  
+  ---
+
+## Technologies Used
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/CSS) 
+- [Python](https://www.python.org/)
+- [Flask](https://flask.palletsprojects.com/)
+- [MongoDB](https://www.mongodb.com/) 
+- [PyMongo](https://pymongo.readthedocs.io/en/stable/)
+- [jQuery](http://code.jquery.com/)
+- [Materialize](https://materializecss.com/)
+- [Heroku](https://www.heroku.com/)
+- [GitHub](https://github.com) 
+- [GitPod](https://www.gitpod.io)
+- [Balsamiq](https://balsamiq.com/) - for wireframes creation.
+- [Google Fonts](https://fonts.google.com)
+- [favicon.io](https://favicon.io/) - Favicon generator to create favicon and make it compatible with different browsers.
+- [Autoprefixer](https://autoprefixer.github.io/) - parses CSS and adds vendor prefixes to CSS rules.
+- [Fontawesome](https://fontawesome.com/) - Footer Social Links Icons 
+
+
+## Deployment
+
+This project was developed with the GitPod platform, code has been pushed to GitHub, database was linked with MongoDB and deployed to Heroku.
+
+### GitHub
+
+To run the project locally:
+
+1. Go to [GitHub](https://github.com/).
+2. Log in to my [account](https://github.com/niekados).
+3. Find repository [CI-MS3-acronym-base](https://github.com/niekados/CI-MS3-acronym-base) and open it.
+4. Click the green "Code" button for the drop-down menu to appear.
+5. You can clone the repository by copying the HTTPS link to your desktop IDE.
+6. Alternatively you can download the ZIP file and extract it onto your computer.
+
+To fork the repository:
+
+1. Go to [GitHub](https://github.com/).
+2. Log in to my [account](https://github.com/niekados).
+3. Find repository [CI-MS3-acronym-base](https://github.com/niekados/CI-MS3-acronym-base) and open it.
+4. Loctate the "fork" button in the top right corner and click it.
+
+### MongoDB
+
+1. Go to [MongoDB](https://www.mongodb.com/) and login
+2. Click "Create" button
+3. Select cloud provider - Amazon AWS
+4. Select Region - Europe
+5. Assign cluster name
+6. Click "Create cluster"
+7. Create Database user - Database Access under Security menu
+8. Whitelist IP - Network Access under Security menu
+    select Allow Access From Anywhere and supply IP address
+9. Create Database in Cluster
+10. Create New Collection in Database
+11. Go to your database, click "Overview" tab and click "Connect" Button
+12. Select "Connect your application", select driver as PYTHON
+13. Copy amended application code and add it to Heroku Vars
+
+### Heroku 
+
+1. Add "requirements.txt"  by typing in GitPod terminal `pip3 freeze --local > requirements.txt`
+2. add Procfile by typing `echo web: python app.py > Procfile` in GitPod terminal
+3. Login to Heroku [Heroku](https://www.heroku.com/) App 
+4. Click "New" button and from drop down menu select "Create new app"
+5. Add app name, select region and create app.
+6. In app go to "Deploy" 
+7. Choose GitHub as Deployment Method
+8. Search for your GitHub repository and click connect
+9. Select "Settings" tab
+10. In Config Vars section press "Reveal Config Vars"
+11. Add your Configuration veriables from your `env.py` file:
+    * IP
+    * PORT
+    * SECRET_KEY
+    * MONGODB_NAME
+    * MONGO_URI
+12. Go to "Deploy" tab, in "Manual Deploy" section click "Deploy Branch" button. 
+13. In "Automatic Deploys" section click "Enable Automatic Deploys" button
+14. Your app has been deployed!
