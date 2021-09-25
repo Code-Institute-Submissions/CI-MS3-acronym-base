@@ -29,7 +29,7 @@ def get_acronyms():
     return render_template("index.html", acronyms=acronyms)
 
 
-# Search bar for main page
+# Search bar for the main page
 @app.route("/search", methods=["GET", "POST"])
 def search():
     search = request.form.get("search")
