@@ -13,6 +13,7 @@ Acronym database design to store and search social media acronyms.
   - [Mobile](#mobile)
   - [Tablet](#tablet)
   - [Desktop](#desktop)
+  - [Database](#database-structure)
 - [Features](#features)
 - [Design](#design)
 - [Wireframes](#wireframes)
@@ -84,6 +85,26 @@ Page structure:
   * Footer with developers name and GitHub, LinkedIn and Email links. 
 * Home Page -  Search bar and search results displayed below.
 * My Profile page - acronym entries I have created, edit/update my acronyms button, delete acronyms button.
+
+### Database Structure
+---
+
+| **Acronyms Collection** | **Data Type** |
+|:---:|:---|
+| `_id` | *ObjectId* |
+| `acronym_name` | *String* |
+| `meaning` | *String* |
+| `entered_by` | *String* |
+
+---
+
+| **Users Collection** | **Data Type** |
+|:---:|:---|
+| `_id` | *ObjectId* |
+| `username` | *String* |
+| `password` | *String* |
+
+---
 
 ## Features
 
@@ -283,3 +304,14 @@ To fork the repository:
 12. Go to the "Deploy" tab, in the "Manual Deploy" section click the "Deploy Branch" button. 
 13. In the "Automatic Deploys" section click the "Enable Automatic Deploys" button
 14. Your app has been deployed!
+
+## Credits
+
+I want to express my gratitude to:
+* Code Institute for providing studying materials and detailed walkthrough project lessons.
+* My work colleagues for support and understanding for taking time off work to complete this project.
+* "Student Care" team for friendliness and support, especially Neil and Aoife, this really brought my spirit up!   
+
+### Testing
+
+Testing 

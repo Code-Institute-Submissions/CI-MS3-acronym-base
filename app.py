@@ -19,7 +19,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# Get list of all acronyms, sort by name alphabetically
+# Get the list of all acronyms, sort by name alphabetically
 # ( no upper case priority )
 @app.route("/")
 @app.route("/get_acronyms")
@@ -44,7 +44,7 @@ def register():
     if request.method == "POST":
         registered_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        # Check if user already in database
+        # Check if the user is in the database already
         if registered_user:
             flash("This username already exists")
             return redirect(url_for("register"))
@@ -53,14 +53,14 @@ def register():
             flash("Passwords do not match")
             return redirect(url_for("register"))
         # If passwords match, and username is not in use,
-        # insert user into database
+        # insert the user into the database
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
         session["user"] = request.form.get("username").lower()
-        flash("You have successfully reigistered")
+        flash("You have successfully registered")
         return redirect(url_for("myprofile", username=session["user"]))
     return render_template("register.html")
 
@@ -73,7 +73,7 @@ def login():
     if request.method == "POST":
         registered_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        # Check if password hash matches with hash in user database
+        # Check if password hash matches with hash in the user database
         if registered_user:
             if check_password_hash(
                     registered_user["password"], request.form.get("password")):
@@ -86,7 +86,7 @@ def login():
             else:
                 flash("Login details do not match")
                 return redirect(url_for("login"))
-            # if username doesn't match, redirect to login page
+            # If username doesn't match, redirect to login page
         else:
             flash("Login details do not match")
             return redirect(url_for("login"))
@@ -98,7 +98,7 @@ def login():
 def myprofile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    # User "admin" functionality, lists every user entries in profile page
+    # User "admin" functionality, lists every entry of the user in the profile page
     if session["user"] == "admin":
         user_entries = list(mongo.db.acronyms.find().collation(
             {'locale': 'en'}).sort("acronym_name", 1))
@@ -134,14 +134,14 @@ def add_acronym():
                 "meaning": request.form.get("meaning"),
                 "entered_by": session["user"]
             }
-        # Check if entry name already exists in database
+        # Check if entry name already exists in the database
         entries = list(mongo.db.acronyms.find())
         for entry in entries:
             for key, value in entry.items():
                 if value == request.form.get("acronym_name").upper():
                     flash("This acronym already exists")
                     return redirect(url_for("add_acronym"))
-        # If entry name is not in database, insert new entry
+        # If entry name is not in the database, insert a new entry
         mongo.db.acronyms.insert_one(new_acronym)
         flash("New acronym added")
         return redirect(url_for("myprofile", username=session["user"]))
@@ -162,7 +162,7 @@ def edit_acronym(acronym_id):
         mongo.db.acronyms.update({"_id": ObjectId(acronym_id)}, update_acronym)
         flash("Acronym updated")
         return redirect(url_for('myprofile', username=session['user']))
-    # Get acronym data from database to reflect it in edit form
+    # Get acronym data from the database to reflect it in edit form
     entry = mongo.db.acronyms.find_one({"_id": ObjectId(acronym_id)})
     return render_template("edit_acronym.html", entry=entry)
 
