@@ -10,11 +10,11 @@
       </div>
       <!-- Card buttons - Materialize -->
       <div class="card-action center-align">
-        <a href="{{ url_for('myprofile', username=session['user']) }}" class="btn green lighten-1">Cancel<i
-            class="material-icons">cancel
+        <a href="{{ url_for('myprofile', username=session['user']) }}" class="btn my-buttons green lighten-1">Cancel<i
+            class="material-icons my-icons">cancel
           </i></a>
-        <a href="{{ url_for('delete_acronym', acronym_id=entry._id)}}" class="btn red lighten-1">Delete<i
-            class="material-icons">delete_forever
+        <a href="{{ url_for('delete_acronym', acronym_id=entry._id)}}" class="btn my-buttons red lighten-1">Delete<i
+            class="material-icons my-icons">delete_forever
           </i></a>
       </div>
     </div>
