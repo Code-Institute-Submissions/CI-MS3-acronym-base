@@ -172,58 +172,58 @@
 
 ### Navbar Links
 
-* All Links are working and redirecting to correct pages.
-* Logo redirects to home page.
-* Mobile "hamburger" side nav links are working and redirecting to correct pages.
+* All Links are working and redirecting to correct pages. `PASS`
+* Logo redirects to home page. `PASS`
+* Mobile "hamburger" side nav links are working and redirecting to correct pages. `PASS`
 
 ### Footer Social Links
 
-* All links open in a new tab and directs to correct links.
+* All links open in a new tab and directs to correct links. `PASS`
 
 ### Main page
 
-* On loading the page generates acronym cards.
-* Search bar finds search entries and displays "No results found" if search entry doesn't exist.
-* Reset search entry resets the page and reloads the main page with all acronym cards.
-* Add Acronym "+" button redirects to Add Acronym page or to Login page if the user is not logged in.
+* On loading the page generates acronym cards. `PASS`
+* Search bar finds search entries and displays "No results found" if search entry doesn't exist. `PASS`
+* Reset search entry resets the page and reloads the main page with all acronym cards. `PASS`
+* Add Acronym "+" button redirects to Add Acronym page or to Login page if the user is not logged in. `PASS`
 
 
 ### My Profile Page
 
-* User acronyms are filtered to display only their entries
-* Admin user has all acronyms shown with contributors usernames.
-* Add Acronym "+" button redirects to Add Acronym page or to Login page if the user is not logged in.
-* Edit Acronym button redirects to Edit Acronym page with the acronym form prefilled.
-* Delete Acronym button redirects the user to the Delete Confirmation page.
+* User acronyms are filtered to display only their entries. `PASS`
+* Admin user has all acronyms shown with contributors usernames. `PASS`
+* Add Acronym "+" button redirects to Add Acronym page. `PASS`
+* Edit Acronym button redirects to Edit Acronym page with the acronym form prefilled. `PASS`
+* Delete Acronym button redirects the user to the Delete Confirmation page. `PASS`
 
 ### Register Page
 
-* Entering username in use displays a flash message that username already exists.
-* If re-enter password doesn't match with the password, a flash message is displayed with a message that passwords do not match.
-* Registration is confirmed with the flash message that the user is registered and redirects to the My Profile page.
-* Login link redirects to the Login page.
+* Entering username in use displays a flash message that username already exists. `PASS`
+* If re-enter password doesn't match with the password, the flash message is displayed with the message that passwords do not match. `PASS`
+* Registration is confirmed with the flash message that the user is registered and redirects to the My Profile page. `PASS`
+* Login link redirects to the Login page. `PASS`
 
 ### Login
 
-* Entering incorrect username or/and password generates a message that login details do not match.
-* Register link redirects the user to the Registration Page.
+* Entering incorrect username or/and password generates a message that login details do not match. `PASS`
+* Register link redirects the user to the Registration Page. `PASS`
 
 ### Add Acronym
 
-* Displays form with Acronym and Definition fields.
-* If entered Acronym already exists in database flash message being displayed that acronym already exist and reloads Add Acronym Page.
-* Cancel button doesn't post form entries and redirects user to My Profile Page.
-* Submit button inserts entries into the database.
+* Displays form with Acronym and Definition fields. `PASS`
+* If entered Acronym already exists in database flash message being displayed that acronym already exist and reloads Add Acronym Page. `PASS`
+* Cancel button doesn't post form entries and redirects user to My Profile Page. `PASS`
+* Submit button inserts entries into the database. `PASS`
 
 
 ### Edit Acronym
 
-* Displays form with correct Acronym and Definition fields pre-filled.
-* Cancel button doesn't post form entries and redirects user to My Profile Page.
-* Submit button inserts entries into the database.
+* Displays form with correct Acronym and Definition fields pre-filled. `PASS`
+* Cancel button doesn't post form entries and redirects user to My Profile Page.`PASS`
+* Submit button inserts entries into the database. `PASS`
 
 ### Confirm Delete
 
-* Displays the user the message if they want to delete the acronym and inserts the correct acronym name.
-* Delete button removes the correct entry from the database and redirects user to My Profile page.
-* Cancel button reverts delete action and redirects user to My Profile page.
+* Displays the user the message if they want to delete the acronym and inserts the correct acronym name. `PASS`
+* Delete button removes the correct entry from the database and redirects user to My Profile page. `PASS`
+* Cancel button reverts delete action and redirects user to My Profile page. `PASS`

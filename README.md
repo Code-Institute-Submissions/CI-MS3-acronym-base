@@ -2,7 +2,7 @@
 ## Code Institute Second Milestone Project 
 ## **Acronym Base** - acronym database
 
-Acronym database design to store and search social media acronyms.
+Acronym database designed to store and search for social media acronyms.
 
 ## Index
 
@@ -27,24 +27,26 @@ Acronym database design to store and search social media acronyms.
 * The website with a collection of internet acronyms.
 * Social media is full of acronyms and this website is made for the user to be able to look up the meanings of acronyms.
 * It has search functionality and add, update and remove functionality for registered users.
-* The website has user login or register features.
+* The website has user login and register features.
 
 
 ## Scope
 
-The website with its main functionality in mind- to enable the user to quickly search the acronyms and their meanings. 
-The website will have additional functionality for registered users to add new acronyms and update them as well as delete them.
+The website enabling the user to quickly search the acronyms and their meanings. 
+The website will have additional functionality for registered users to add new acronyms and update them as well as delete.
 Page structure:
 1. NavBar across all the pages with logo and links to the homepage, register or login. Registered and logged in users will have additional buttons to view their profile and log out.
-2. The main page will have a search function and results being displayed below.
+2. The main page will have a search function with results being displayed below.
 3. Add an acronym button available on the main page and profile page.
 4. Register page will have a form for user creation: username and password fields.
 5. Login page will have a form for username and password input.
 6. Profile page will have a list of data entries for registered users and buttons for editing, adding or removing entries.
-7. Footer across all the pages with the developer name and links for GitHub, LinkedIn pages and email.
+7. Footer across all the pages with the developer name and links for GitHub, LinkedIn websites and email.
 
 ## User Stories
+
 * First Time Visitor:
+
   * As a user I would like to have a quick way to find meanings for social media acronyms.
   * As a user I would like to register on the website and have my profile.
   * As a curious user I would like to find out more about the developer or contact developer.
@@ -113,11 +115,11 @@ Page structure:
 Website is created with functionality in mind for looking up acronyms and their meanings. 
 It has a simple interface, to get the "job done" without any additional distractions or unnecessary pictures, as the site has to have a feel of dictionary pages.
 
-* The NavBar will consist of "Logo" and navigation links. "Logo" Will be located on the left side of the screen and links on the right. Mobile view will shift Logo to the centre and will have a "hamburger" drop-down menu on the left.
+* The NavBar will consist of "Logo" and navigation links. "Logo" will be located on the left side of the screen and links on the right. Mobile view will shift Logo to the centre and will have a "hamburger" drop-down menu on the right.
 
-* Footer will have the developer name and contact links for Github, LinkedIn and Mail.
+* Footer will have the developer name and links for Github, LinkedIn and Mail.
 
-* Home page will consist of the search bar and search results below. No additional distractions, as the user main purpose of the visit is to find acronym meanings, it has to be simple and quick for getting results. On the Home page Navbar will have links for Home, Register and Login. The Mobile version will hide these options in the "Hamburger" menu. Small "+" button for adding acronyms to the database in case the user cannot find one and would like to contribute.
+* Home page will consist of the search bar and search results below. No additional distractions, as the users main visit purpose is to find acronym meanings, it has to be simple and quick for getting the results. On the Home page Navbar will have links for Home, Register and Login. The Mobile version will hide these options in the "Hamburger" menu. Small "+" button for adding acronyms to the database in case the user cannot find one and would like to contribute.
 
 * Register page will have input fields for username creation and password as well as re-enter password field. "Register" button to submit the registration form, "Cancel" button to cancel the registration.
 Register page Navbar will have links for Home, Register and Login. The Mobile version will hide these options in the "Hamburger" menu. Small link for "Login" in case the user has registered already.
@@ -142,11 +144,11 @@ Register page Navbar will have links for Home, Register and Login. The Mobile ve
 ## Design
 
 Page design across all the pages will consist of a black and white theme with some grey fields to stand out in the white background. The idea is to have a similar look to the physical dictionary page.
-The logo will be basic and clear- "Acronym Base", highlighting it with typewriter fonts. All text and buttons will be plain and simple. 
+The logo will be basic and clear- "AcronymBase", highlighting it with typewriter fonts. All text and buttons will be plain and simple. 
 
-* Logo - "Acronym Base" will have stronger look comparing to other fonts used on the page, it will have a typewriter-style font to express the idea that the page is all about text and is designed to have a similar feel to a physical dictionary page. Light grey background with black text fonts.
+* Logo - "AcronymBase" will have stronger look comparing to other fonts used on the page, it will have a typewriter-style font to express the idea that the page is all about text and is designed to have a similar feel to a physical dictionary page. Light grey background with black text fonts.
 
-* Footer will have the same look as Navbar, will be grey and white, simple text with year and developers name on the left side and icons for Github, LinkedIn and Email on the right side.
+* Footer will have the same look as Navbar, will be grey background and black text, simple text with year and developers name on the left side and icons for Github, LinkedIn and Email on the right side.
 
 * Search Bar will be basic and will draw users attention by being placed in the upper centre of the main page, just below the NavBar. Will have search glass icon and reset search entry button on the side.
 
@@ -281,12 +283,12 @@ To fork the repository:
 10. Create New Collection in Database
 11. Go to your database, click the "Overview" tab and click the "Connect" Button
 12. Select "Connect your application", select driver as PYTHON
-13. Copy amended application code and add it to Heroku Vars
+13. Copy amended application code and add it to Heroku Vars and `env.py` file
 
 ### Heroku 
 
 1. Add "requirements.txt"  by typing in GitPod terminal `pip3 freeze --local > requirements.txt`
-2. add Procfile by typing `echo web: python app.py > Procfile` in the GitPod terminal
+2. Add Procfile by typing `echo web: python app.py > Procfile` in the GitPod terminal
 3. Login to Heroku [Heroku](https://www.heroku.com/) App 
 4. Click the "New" button and from the drop-down menu select "Create new app"
 5. Add app name, select region and create the app.
@@ -310,8 +312,8 @@ To fork the repository:
 I want to express my gratitude to:
 * Code Institute for providing studying materials and detailed walkthrough project lessons.
 * My work colleagues for support and understanding for taking time off work to complete this project.
-* "Student Care" team for friendliness and support, especially Neil and Aoife, this really brought my spirit up!   
+* "Student Care" team for friendliness and support, especially Neil and Aoife, they really brought my spirit up!   
 
 ### Testing
 
-Testing 
+Full testing available in the seperate file, please follow [this link](static/testing/TESTING.md) for [TESTING.md](static/testing/TESTING.md) file.
